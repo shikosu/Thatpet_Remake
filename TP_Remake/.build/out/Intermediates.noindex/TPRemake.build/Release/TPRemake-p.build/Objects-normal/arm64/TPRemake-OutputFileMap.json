@@ -1,0 +1,151 @@
+{
+  "" : {
+    "const-values" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary.swiftconstvalues",
+    "dependencies" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary.d",
+    "diagnostics" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary.dia",
+    "emit-module-dependencies" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary-emit-module.dia",
+    "pch" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/TPRemake-primary.swiftdeps"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/ActivityBubble.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ActivityBubble.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ActivityBubble.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ActivityBubble.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Agent.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Agent.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Agent.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Agent.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/AgentConnector.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgentConnector.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgentConnector.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgentConnector.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/AgentEvents.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgentEvents.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgentEvents.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgentEvents.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/AgyRunner.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgyRunner.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgyRunner.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AgyRunner.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/AnimationPlayer.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AnimationPlayer.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AnimationPlayer.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/AnimationPlayer.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/ApprovalController.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ApprovalController.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ApprovalController.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ApprovalController.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Attachments.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Attachments.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Attachments.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Attachments.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/BubbleController.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/BubbleController.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/BubbleController.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/BubbleController.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/CLIRunner.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/CLIRunner.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/CLIRunner.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/CLIRunner.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/ChatModel.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ChatModel.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ChatModel.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ChatModel.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/ChatWindowController.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ChatWindowController.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ChatWindowController.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ChatWindowController.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/ClaudeRunner.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ClaudeRunner.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ClaudeRunner.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/ClaudeRunner.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/DataDir.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/DataDir.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/DataDir.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/DataDir.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Effects.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Effects.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Effects.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Effects.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/HookMode.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/HookMode.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/HookMode.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/HookMode.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Markdown.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Markdown.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Markdown.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Markdown.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Pack.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Pack.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Pack.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Pack.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/PackLibrary.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PackLibrary.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PackLibrary.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PackLibrary.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Particles.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Particles.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Particles.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Particles.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/PetBrain.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetBrain.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetBrain.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetBrain.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/PetSocket.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetSocket.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetSocket.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetSocket.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/PetView.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetView.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetView.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/PetView.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Reactions.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Reactions.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Reactions.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Reactions.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Settings.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Settings.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Settings.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Settings.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Simulation.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Simulation.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Simulation.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Simulation.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/Sizing.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Sizing.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Sizing.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/Sizing.o"
+  },
+  "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/Sources/TPRemake/main.swift" : {
+    "index-unit-output-path" : "/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/main.o",
+    "llvm-bc" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/main.bc",
+    "object" : "/Users/shikosu/Documents/Thatpet_Remake/TP_Remake/.build/out/Intermediates.noindex/TPRemake.build/Release/TPRemake-p.build/Objects-normal/arm64/main.o"
+  }
+}

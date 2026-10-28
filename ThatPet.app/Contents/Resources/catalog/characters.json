@@ -1,0 +1,77 @@
+{
+ "format": "thatpet-catalog/1",
+ "characters": [
+  {
+   "id": "sonnet55",
+   "name": "Sonnet 5.5"
+  },
+  {
+   "id": "haiku55",
+   "name": "Haiku 5.5"
+  },
+  {
+   "id": "astra6",
+   "name": "Astra 6"
+  },
+  {
+   "id": "deepseek41",
+   "name": "DeepSeek V4.1"
+  },
+  {
+   "id": "sol61",
+   "name": "Sol 6.1"
+  },
+  {
+   "id": "argon4",
+   "name": "Gemini 4 Argon"
+  },
+  {
+   "id": "flash38",
+   "name": "Gemini 3.8 Flash"
+  },
+  {
+   "id": "grok47",
+   "name": "Grok 4.7"
+  },
+  {
+   "id": "kimik3",
+   "name": "Kimi K3"
+  },
+  {
+   "id": "mimo26pro",
+   "name": "MiMo V2.6 Pro"
+  },
+  {
+   "id": "glm53flash",
+   "name": "GLM 5.3 Flash"
+  },
+  {
+   "id": "luna6",
+   "name": "GPT-6 Luna"
+  },
+  {
+   "id": "qwen38",
+   "name": "Qwen 3.8 27B"
+  },
+  {
+   "id": "userchan",
+   "name": "User-chan"
+  },
+  {
+   "id": "windowschan",
+   "name": "Windows-chan"
+  },
+  {
+   "id": "macoschan",
+   "name": "macOS-chan"
+  },
+  {
+   "id": "linuxchan",
+   "name": "Linux-chan"
+  },
+  {
+   "id": "fable51",
+   "name": "Fable 5.1"
+  }
+ ]
+}

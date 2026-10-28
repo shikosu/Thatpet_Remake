@@ -1,0 +1,94 @@
+2026-10-20 09:07:15.171 [89634] menu-bar icon shown
+2026-10-20 09:07:15.205 [89634] pets: opus55 new
+2026-10-20 09:07:15.225 [89634] started (1 pet(s), 1 pack(s)) in 119 ms
+2026-10-20 09:07:15.485 [89634] update feed read: newest build 146
+2026-10-20 09:07:15.487 [89634] update check stopped: You’re up to date!
+2026-10-20 09:09:16.552 [89634] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-20 11:36:06.621 [3483] menu-bar icon shown
+2026-10-20 11:36:06.647 [3483] pets: opus55 new
+2026-10-20 11:36:06.661 [3483] started (1 pet(s), 1 pack(s)) in 89 ms
+2026-10-20 11:41:07.340 [3483] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-20 11:56:39.875 [4146] menu-bar icon shown
+2026-10-20 11:56:39.905 [4146] pets: opus55 new
+2026-10-20 11:56:39.920 [4146] started (1 pet(s), 1 pack(s)) in 118 ms
+2026-10-20 11:56:45.857 [4146] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-20 22:23:45.445 [6977] menu-bar icon shown
+2026-10-20 22:23:45.478 [6977] pets: opus55 new
+2026-10-20 22:23:45.505 [6977] started (1 pet(s), 1 pack(s)) in 160 ms
+2026-10-20 22:23:46.056 [6977] update feed read: newest build 162
+2026-10-20 22:23:54.366 [6977] update 0.5.0 (build 162) downloaded; it installs when the agents are calm, or on quit
+2026-10-20 22:24:45.725 [6977] pets: opus55 replaces opus55 at x 572
+2026-10-20 22:24:49.866 [6977] pets: opus55 replaces opus55 at x 572
+2026-10-20 22:24:54.133 [6977] pets: opus55 replaces opus55 at x 867
+2026-10-20 22:49:26.172 [6977] pets: opus55 replaces opus55 at x 219
+2026-10-20 22:49:33.009 [6977] pets: opus55 replaces opus55 at x 502
+2026-10-20 22:49:42.477 [6977] pets: opus55 replaces opus55 at x 581
+2026-10-20 22:50:00.623 [6977] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-20 22:50:09.385 [9276] menu-bar icon shown
+2026-10-20 22:50:09.560 [9276] pets: opus55 new
+2026-10-20 22:50:09.623 [9276] started (1 pet(s), 1 pack(s)) in 397 ms
+2026-10-20 23:35:09.769 [9276] update feed read: newest build 162
+2026-10-20 23:35:11.159 [9276] update check stopped: You’re up to date!
+2026-10-20 23:35:16.960 [9276] pets: opus55 replaces opus55 at x 1267
+2026-10-21 00:09:53.615 [9276] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-23 18:03:17.542 [35306] menu-bar icon shown
+2026-10-23 18:03:17.578 [35306] pets: opus55 new
+2026-10-23 18:03:17.611 [35306] started (1 pet(s), 1 pack(s)) in 195 ms
+2026-10-23 18:03:17.873 [35306] prices: list 2026-10-22.1
+2026-10-23 18:03:18.008 [35306] update feed read: newest build 218
+2026-10-23 18:03:23.035 [35306] update 0.6.8 (build 218) downloaded; it installs when the agents are calm, or on quit
+2026-10-23 20:14:45.321 [35306] menu-bar icon requested (reopen)
+2026-10-23 20:14:53.230 [35306] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-23 20:15:10.780 [35967] menu-bar icon shown
+2026-10-23 20:15:10.848 [35967] pets: opus55 new
+2026-10-23 20:15:10.897 [35967] started (1 pet(s), 1 pack(s)) in 301 ms
+2026-10-23 20:15:10.932 [35967] menu-bar icon requested (reopen)
+2026-10-23 20:15:18.858 [35967] update feed read: newest build 218
+2026-10-23 20:15:20.874 [35967] update check stopped: You’re up to date!
+2026-10-23 20:32:33.194 [35967] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-25 22:59:16.129 [59472] menu-bar icon shown
+2026-10-25 22:59:16.154 [59472] pets: opus55 new
+2026-10-25 22:59:16.175 [59472] started (1 pet(s), 1 pack(s)) in 110 ms
+2026-10-25 22:59:16.931 [59472] update feed read: newest build 218
+2026-10-25 22:59:16.933 [59472] update check stopped: You’re up to date!
+2026-10-25 22:59:30.052 [59472] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-26 10:29:23.354 [61427] menu-bar icon shown
+2026-10-26 10:29:23.406 [61427] pets: opus55 new
+2026-10-26 10:29:23.440 [61427] started (1 pet(s), 1 pack(s)) in 208 ms
+2026-10-26 10:29:24.122 [61427] update feed read: newest build 218
+2026-10-26 10:29:24.126 [61427] update check stopped: You’re up to date!
+2026-10-26 10:37:13.731 [61427] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-26 13:15:10.293 [68553] menu-bar icon shown
+2026-10-26 13:15:10.330 [68553] pets: opus55 new
+2026-10-26 13:15:10.364 [68553] started (1 pet(s), 1 pack(s)) in 184 ms
+2026-10-26 13:15:15.582 [68553] update feed read: newest build 218
+2026-10-26 13:15:17.409 [68553] update check stopped: You’re up to date!
+2026-10-26 13:15:31.269 [68553] quit from the menu: agent hooks will not reopen ThatPet until it is opened again
+2026-10-28 11:54:11.713 [80719] menu-bar icon shown
+2026-10-28 11:54:11.748 [80719] pets: opus55 new
+2026-10-28 11:54:11.798 [80719] started (1 pet(s), 1 pack(s)) in 197 ms
+2026-10-28 11:54:12.181 [80719] update feed read: newest build 218
+2026-10-28 11:54:12.184 [80719] update check stopped: You’re up to date!
+2026-10-28 11:54:15.561 [80719] update feed read: newest build 218
+2026-10-28 11:54:16.987 [80719] update check stopped: You’re up to date!
+2026-10-28 11:59:40.068 [80719] installed sonnet55
+2026-10-28 12:00:40.492 [80719] pets: sonnet55 replaces opus55 at x 1035
+2026-10-28 12:02:35.955 [80719] pets: opus55 replaces sonnet55 at x 1351
+2026-10-28 12:02:58.040 [80719] pets: sonnet55 replaces opus55 at x 709
+2026-10-28 12:03:09.084 [80719] pets: sonnet55 kept, opus55 new
+2026-10-28 12:03:21.844 [80719] pets: sonnet55 replaces sonnet55 at x 1016, opus55 replaces opus55 at x 1004
+2026-10-28 12:03:26.487 [80719] pets: sonnet55 replaces sonnet55 at x 1135
+2026-10-28 12:03:27.852 [80719] pets: sonnet55 replaces sonnet55 at x 1135
+2026-10-28 12:03:28.902 [80719] pets: sonnet55 replaces sonnet55 at x 1135
+2026-10-28 12:03:29.622 [80719] pets: sonnet55 replaces sonnet55 at x 1135
+2026-10-28 12:03:31.985 [80719] pets: sonnet55 replaces sonnet55 at x 1135
+2026-10-28 12:03:33.307 [80719] pets: sonnet55 kept, opus55 new
+2026-10-28 12:04:46.780 [82152] menu-bar icon shown
+2026-10-28 12:04:46.869 [82152] pets: sonnet55 new, opus55 new
+2026-10-28 12:04:46.935 [82152] started (2 pet(s), 2 pack(s)) in 285 ms
+2026-10-28 12:40:48.747 [84061] menu-bar icon shown
+2026-10-28 12:40:48.795 [84061] pets: sonnet55 new, opus55 new
+2026-10-28 12:40:48.817 [84061] started (2 pet(s), 2 pack(s)) in 161 ms
+2026-10-28 15:57:12.404 [84061] update feed read: newest build 218
+2026-10-28 15:57:12.409 [84061] update check stopped: You’re up to date!
+2026-10-28 16:16:25.921 [84061] pets: sonnet55 replaces sonnet55 at x 1116, opus55 replaces opus55 at x 565

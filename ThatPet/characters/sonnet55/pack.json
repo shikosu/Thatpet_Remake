@@ -1,0 +1,807 @@
+{
+ "format": "thatpet-pack/1",
+ "id": "sonnet55",
+ "name": "Sonnet 5.5",
+ "version": "2.0.0",
+ "author": "ThatLev",
+ "canvas": 512,
+ "floor": 0.965,
+ "scale_hint": 1.0,
+ "poses": {
+  "idle_stand": {
+   "file": "poses/idle_stand.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "idle_blink": {
+   "file": "poses/idle_blink.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "idle_signature": {
+   "file": "poses/idle_signature.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "idle_look": {
+   "file": "poses/idle_look.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "sleep_sit": {
+   "file": "poses/sleep_sit.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "walk_l_1": {
+   "file": "poses/walk_l_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "walk_l_2": {
+   "file": "poses/walk_l_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "walk_l_3": {
+   "file": "poses/walk_l_3.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "walk_r_1": {
+   "file": "poses/walk_r_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "walk_r_2": {
+   "file": "poses/walk_r_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "walk_r_3": {
+   "file": "poses/walk_r_3.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "fall": {
+   "file": "poses/fall.png",
+   "anchor": "center",
+   "mirror": false
+  },
+  "drag_hang": {
+   "file": "poses/drag_hang.png",
+   "anchor": "top",
+   "mirror": false
+  },
+  "drag_swing_l": {
+   "file": "poses/drag_swing_l.png",
+   "anchor": "top",
+   "mirror": false
+  },
+  "drag_swing_r": {
+   "file": "poses/drag_swing_r.png",
+   "anchor": "top",
+   "mirror": false
+  },
+  "sit_floor": {
+   "file": "poses/sit_floor.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "climb_1": {
+   "file": "poses/climb_1.png",
+   "anchor": "wall",
+   "mirror": true
+  },
+  "climb_2": {
+   "file": "poses/climb_2.png",
+   "anchor": "wall",
+   "mirror": true
+  },
+  "ceiling_1": {
+   "file": "poses/ceiling_1.png",
+   "anchor": "top",
+   "mirror": false
+  },
+  "ceiling_2": {
+   "file": "poses/ceiling_2.png",
+   "anchor": "top",
+   "mirror": false
+  },
+  "jump_crouch": {
+   "file": "poses/jump_crouch.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "jump_air": {
+   "file": "poses/jump_air.png",
+   "anchor": "center",
+   "mirror": false
+  },
+  "land_hard": {
+   "file": "poses/land_hard.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "land_flop": {
+   "file": "poses/land_flop.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "thinking_1": {
+   "file": "poses/thinking_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "thinking_2": {
+   "file": "poses/thinking_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "working_1": {
+   "file": "poses/working_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "working_2": {
+   "file": "poses/working_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "attention_1": {
+   "file": "poses/attention_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "attention_2": {
+   "file": "poses/attention_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "celebrate_1": {
+   "file": "poses/celebrate_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "celebrate_2": {
+   "file": "poses/celebrate_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "error_1": {
+   "file": "poses/error_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "error_2": {
+   "file": "poses/error_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "error_3": {
+   "file": "poses/error_3.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "grateful": {
+   "file": "poses/grateful.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "rare_spin_1": {
+   "file": "poses/rare_spin_1.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "rare_spin_2": {
+   "file": "poses/rare_spin_2.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "rare_wink": {
+   "file": "poses/rare_wink.png",
+   "anchor": "feet",
+   "mirror": false
+  },
+  "rare_finale": {
+   "file": "poses/rare_finale.png",
+   "anchor": "feet",
+   "mirror": false
+  }
+ },
+ "animations": {
+  "idle": {
+   "frames": [
+    [
+     "idle_stand",
+     3200
+    ],
+    [
+     "idle_blink",
+     140
+    ],
+    [
+     "idle_stand",
+     2600
+    ],
+    [
+     "idle_blink",
+     120
+    ],
+    [
+     "idle_stand",
+     90
+    ],
+    [
+     "idle_blink",
+     120
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "breathe"
+   ]
+  },
+  "idle_fidget": {
+   "frames": [
+    [
+     "idle_look",
+     1600
+    ],
+    [
+     "idle_stand",
+     400
+    ],
+    [
+     "idle_signature",
+     1800
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 110,
+   "fx": [
+    "breathe"
+   ]
+  },
+  "sleep": {
+   "frames": [
+    [
+     "sleep_sit",
+     4000
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "breathe_slow"
+   ],
+   "particles": [
+    "zzz"
+   ]
+  },
+  "walk_left": {
+   "frames": [
+    [
+     "walk_l_1",
+     150
+    ],
+    [
+     "walk_l_2",
+     150
+    ],
+    [
+     "walk_l_3",
+     150
+    ],
+    [
+     "walk_l_2",
+     150
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "walk_bob"
+   ]
+  },
+  "walk_right": {
+   "frames": [
+    [
+     "walk_r_1",
+     150
+    ],
+    [
+     "walk_r_2",
+     150
+    ],
+    [
+     "walk_r_3",
+     150
+    ],
+    [
+     "walk_r_2",
+     150
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "walk_bob"
+   ]
+  },
+  "sit": {
+   "frames": [
+    [
+     "sit_floor",
+     4000
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "breathe"
+   ]
+  },
+  "fall": {
+   "frames": [
+    [
+     "fall",
+     1000
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "fall_stretch"
+   ]
+  },
+  "drag": {
+   "frames": [
+    [
+     "drag_hang",
+     1000
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "pendulum"
+   ]
+  },
+  "drag_left": {
+   "frames": [
+    [
+     "drag_swing_l",
+     1000
+    ]
+   ],
+   "loop": true,
+   "xfade": 60,
+   "fx": [
+    "pendulum"
+   ]
+  },
+  "drag_right": {
+   "frames": [
+    [
+     "drag_swing_r",
+     1000
+    ]
+   ],
+   "loop": true,
+   "xfade": 60,
+   "fx": [
+    "pendulum"
+   ]
+  },
+  "climb": {
+   "frames": [
+    [
+     "climb_1",
+     260
+    ],
+    [
+     "climb_2",
+     260
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "climb_bob"
+   ],
+   "mirror_on_right_wall": true
+  },
+  "ceiling": {
+   "frames": [
+    [
+     "ceiling_1",
+     280
+    ],
+    [
+     "ceiling_2",
+     280
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "pendulum"
+   ]
+  },
+  "jump_launch": {
+   "frames": [
+    [
+     "jump_crouch",
+     180
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "jump_air",
+   "xfade": 0,
+   "fx": [
+    "squash"
+   ]
+  },
+  "jump_air": {
+   "frames": [
+    [
+     "jump_air",
+     1000
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "stretch"
+   ]
+  },
+  "land_good": {
+   "frames": [
+    [
+     "jump_crouch",
+     120
+    ],
+    [
+     "idle_stand",
+     200
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 60,
+   "fx": [
+    "land_squash"
+   ]
+  },
+  "land_hard": {
+   "frames": [
+    [
+     "land_hard",
+     700
+    ],
+    [
+     "jump_crouch",
+     160
+    ],
+    [
+     "idle_stand",
+     200
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 80,
+   "fx": [
+    "land_squash"
+   ],
+   "particles": [
+    "dust"
+   ]
+  },
+  "land_flop": {
+   "frames": [
+    [
+     "land_flop",
+     900
+    ],
+    [
+     "sit_floor",
+     300
+    ],
+    [
+     "idle_stand",
+     200
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 90,
+   "fx": [
+    "land_squash"
+   ],
+   "particles": [
+    "dust"
+   ]
+  },
+  "thinking": {
+   "frames": [
+    [
+     "thinking_1",
+     4000
+    ],
+    [
+     "thinking_2",
+     4000
+    ]
+   ],
+   "hold": true,
+   "loop": true,
+   "xfade": 160,
+   "fx": [
+    "breathe",
+    "sway"
+   ],
+   "particles": [
+    "thought_dots"
+   ]
+  },
+  "working": {
+   "frames": [
+    [
+     "working_1",
+     260
+    ],
+    [
+     "working_2",
+     260
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": []
+  },
+  "attention": {
+   "frames": [
+    [
+     "attention_1",
+     320
+    ],
+    [
+     "attention_2",
+     320
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "hop"
+   ],
+   "particles": [
+    "exclaim"
+   ]
+  },
+  "grateful": {
+   "frames": [
+    [
+     "grateful",
+     1300
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "working",
+   "xfade": 120,
+   "fx": [
+    "breathe"
+   ],
+   "particles": [
+    "sparkle_small"
+   ]
+  },
+  "celebrating": {
+   "frames": [
+    [
+     "celebrate_1",
+     420
+    ],
+    [
+     "celebrate_2",
+     520
+    ],
+    [
+     "celebrate_1",
+     420
+    ],
+    [
+     "celebrate_2",
+     900
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 70,
+   "fx": [
+    "hop"
+   ],
+   "particles": [
+    "confetti"
+   ]
+  },
+  "error": {
+   "frames": [
+    [
+     "error_1",
+     700
+    ],
+    [
+     "error_2",
+     1100
+    ],
+    [
+     "error_3",
+     1800
+    ],
+    [
+     "idle_stand",
+     200
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 120,
+   "fx": [
+    "shake_once"
+   ],
+   "particles": [
+    "sweat"
+   ]
+  },
+  "oops": {
+   "frames": [
+    [
+     "error_1",
+     450
+    ],
+    [
+     "error_2",
+     550
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "working",
+   "xfade": 90,
+   "fx": [
+    "shake_once"
+   ],
+   "particles": [
+    "sweat"
+   ]
+  },
+  "helper": {
+   "frames": [
+    [
+     "attention_2",
+     700
+    ],
+    [
+     "idle_signature",
+     700
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "working",
+   "xfade": 110,
+   "fx": [
+    "hop"
+   ],
+   "particles": [
+    "sparkle_small"
+   ]
+  },
+  "attention_urgent": {
+   "frames": [
+    [
+     "attention_1",
+     200
+    ],
+    [
+     "attention_2",
+     200
+    ]
+   ],
+   "loop": true,
+   "xfade": 0,
+   "fx": [
+    "hop"
+   ],
+   "particles": [
+    "exclaim"
+   ]
+  },
+  "compacting": {
+   "frames": [
+    [
+     "thinking_2",
+     500
+    ],
+    [
+     "rare_spin_1",
+     160
+    ],
+    [
+     "rare_spin_2",
+     160
+    ],
+    [
+     "idle_stand",
+     400
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 0,
+   "fx": [
+    "poof"
+   ],
+   "particles": [
+    "poof"
+   ]
+  },
+  "rare_surprise": {
+   "frames": [
+    [
+     "idle_stand",
+     120
+    ],
+    [
+     "rare_spin_1",
+     110
+    ],
+    [
+     "rare_spin_2",
+     110
+    ],
+    [
+     "rare_spin_1",
+     110
+    ],
+    [
+     "rare_wink",
+     1500
+    ],
+    [
+     "rare_finale",
+     1700
+    ],
+    [
+     "idle_stand",
+     200
+    ]
+   ],
+   "loop": false,
+   "repeat": 1,
+   "next": "idle",
+   "xfade": 0,
+   "fx": [
+    "spin_hop"
+   ],
+   "particles": [
+    "hearts",
+    "sparkle"
+   ]
+  }
+ }
+}

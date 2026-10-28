@@ -1,0 +1,28 @@
+{
+  "characters": [
+    "sonnet55",
+    "opus55"
+  ],
+  "size": 0.5,
+  "wander": true,
+  "rare_chance": 0.1,
+  "custom_events": {
+    "approval": true,
+    "done": true,
+    "error": true,
+    "thinking": true,
+    "idle": true
+  },
+  "display": null,
+  "launch_at_login": false,
+  "sounds": true,
+  "bubble": true,
+  "focus_on_click": true,
+  "onboarded": true,
+  "share_usage": false,
+  "send_crash_reports": false,
+  "codex_home": null,
+  "show_in_menu_bar": true,
+  "follow": "pick",
+  "event_animations": {}
+}
