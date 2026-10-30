@@ -5,6 +5,7 @@ let package = Package(
     name: "TPRemake",
     platforms: [.macOS(.v13)],
     targets: [
-        .executableTarget(name: "TPRemake", path: "Sources/TPRemake")
+        .executableTarget(name: "TPRemake", path: "Sources/TPRemake"),
+        .testTarget(name: "TPRemakeTests", dependencies: ["TPRemake"], path: "Tests/TPRemakeTests"),
     ]
 )

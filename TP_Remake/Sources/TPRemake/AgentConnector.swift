@@ -15,6 +15,12 @@ enum AgentConnector {
         "\"\(binary)\" hook --provider \(provider) --event \(event) \(marker)"
     }
 
+    /// Chemin du binaire d'une commande de hook (entre guillemets en tête).
+    static func binaryPath(in command: String) -> String? {
+        guard command.hasPrefix("\""), let end = command.dropFirst().firstIndex(of: "\"") else { return nil }
+        return String(command[command.index(after: command.startIndex)..<end])
+    }
+
     static func isOurs(_ command: String) -> Bool { command.contains(marker) }
 
     static var defaultConfigDir: URL {
@@ -133,6 +139,10 @@ enum AgentConnector {
               let handlers = groups.first?["hooks"] as? [[String: Any]],
               let timeout = handlers.first?["timeout"] as? Double ?? (handlers.first?["timeout"] as? Int).map(Double.init)
         else { return false }
+        // Si le binaire du hook a disparu, Antigravity laisserait tout passer : la porte n'est pas fermée.
+        let commands = groups.compactMap { ($0["hooks"] as? [[String: Any]])?.first?["command"] as? String }
+        guard let command = commands.first, let binary = binaryPath(in: command),
+              FileManager.default.isExecutableFile(atPath: binary) else { return false }
         return timeout >= Double(HookMode.approvalWindow + 5)
     }
 

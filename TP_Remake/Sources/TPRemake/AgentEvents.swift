@@ -49,4 +49,6 @@ struct AgentMessage: Codable {
     var cwd: String?
     var reply: String?
     var expires: Double?
+    /// Faux pour les chats du personnage : il n'y a pas d'interface de l'agent où « Voir dans … » mènerait.
+    var canAsk: Bool?
 }

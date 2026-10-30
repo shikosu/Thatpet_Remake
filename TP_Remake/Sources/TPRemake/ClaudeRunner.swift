@@ -73,6 +73,15 @@ final class ClaudeRunner: CLIRunner {
                let text = delta["text"] as? String {
                 appendDelta(text)
             }
+        case "assistant":
+            // Appels d'outils : on montre ce que l'agent fait (outil + cible) pendant les longs travaux.
+            let content = (object["message"] as? [String: Any])?["content"] as? [[String: Any]] ?? []
+            for block in content where block["type"] as? String == "tool_use" {
+                let name = block["name"] as? String ?? "outil"
+                let target = HookMode.describe(tool: name, input: block["input"] as? [String: Any] ?? [:])
+                    .split(separator: "\n").first.map(String.init) ?? ""
+                emit(.step(target.isEmpty ? name : "\(name) : \(String(target.prefix(80)))"))
+            }
         case "result":
             finalText = object["result"] as? String
             finalIsError = object["is_error"] as? Bool ?? false

@@ -14,7 +14,11 @@ final class PetView: NSView {
     private let spriteB = CALayer()        // ancienne pose, visible pendant un fondu enchaîné
     private let spriteA = CALayer()        // pose courante
     private var particleRenderer: ParticleRenderer!
-    private var image: CGImage?
+    private var image: CGImage? {
+        didSet { if image !== oldValue { alphaMask = image.flatMap(AlphaMask.init) } }
+    }
+    /// Opacité de chaque pixel, calculée une fois par image (au lieu de découper l'image à chaque test de souris).
+    private var alphaMask: AlphaMask?
     private var fadeSource: CGImage?
     private var mirrored = false
     private var anchor = CGPoint(x: 0.5, y: 0.035)
@@ -116,20 +120,11 @@ final class PetView: NSView {
 
     /// Vrai si le pixel (coordonnées de la vue) n'est pas transparent.
     func isOpaque(at point: NSPoint) -> Bool {
-        guard let image, point.x >= 0, point.y >= 0, point.x < canvasSide, point.y < canvasSide else { return false }
+        guard let mask = alphaMask, point.x >= 0, point.y >= 0, point.x < canvasSide, point.y < canvasSide else { return false }
         let px = mirrored ? canvasSide - point.x : point.x
-        let x = Int(px / canvasSide * CGFloat(image.width))
-        let y = Int((1 - point.y / canvasSide) * CGFloat(image.height))
-        guard x >= 0, y >= 0, x < image.width, y < image.height,
-              let crop = image.cropping(to: CGRect(x: x, y: y, width: 1, height: 1)),
-              let provider = crop.dataProvider, let data = provider.data,
-              let bytes = CFDataGetBytePtr(data) else { return false }
-        let bpp = crop.bitsPerPixel / 8
-        switch crop.alphaInfo {
-        case .premultipliedLast, .last: return bytes[bpp - 1] > 20
-        case .premultipliedFirst, .first: return bytes[0] > 20
-        default: return true
-        }
+        let x = Int(px / canvasSide * CGFloat(mask.width))
+        let y = Int((1 - point.y / canvasSide) * CGFloat(mask.height))
+        return mask.isOpaque(x: x, y: y)
     }
 
     // MARK: Souris : un clic ouvre la bulle, un glissement saisit le personnage.
@@ -166,4 +161,33 @@ final class PetView: NSView {
     }
 
     override func menu(for event: NSEvent) -> NSMenu? { menuProvider?() }
+}
+
+/// Canal alpha d'une image, un octet par pixel (origine en haut à gauche, comme l'image).
+struct AlphaMask {
+    let width: Int
+    let height: Int
+    private let alpha: [UInt8]
+
+    init?(_ image: CGImage) {
+        let w = image.width, h = image.height
+        guard w > 0, h > 0 else { return nil }
+        var bytes = [UInt8](repeating: 0, count: w * h)
+        let drawn = bytes.withUnsafeMutableBytes { buffer -> Bool in
+            guard let context = CGContext(data: buffer.baseAddress, width: w, height: h, bitsPerComponent: 8,
+                                          bytesPerRow: w, space: CGColorSpaceCreateDeviceGray(),
+                                          bitmapInfo: CGImageAlphaInfo.alphaOnly.rawValue) else { return false }
+            context.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
+            return true
+        }
+        guard drawn else { return nil }
+        width = w
+        height = h
+        alpha = bytes
+    }
+
+    func isOpaque(x: Int, y: Int) -> Bool {
+        guard x >= 0, y >= 0, x < width, y < height else { return false }
+        return alpha[y * width + x] > 20
+    }
 }

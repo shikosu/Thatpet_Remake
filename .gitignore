@@ -1,1 +1,4 @@
 /ThatPet-0.6.8-macos.zip
+.build/
+.DS_Store
+*.swp

@@ -59,7 +59,8 @@ enum HookMode {
 
     /// Envoie la demande au personnage et attend sa décision ; sans réponse, Claude demande lui-même.
     private static func askPet(_ message: inout AgentMessage, payload: [String: Any], dataDir: DataDir) -> Int32 {
-        let detail = describe(tool: payload["tool_name"] as? String ?? "", input: payload["tool_input"] as? [String: Any] ?? [:])
+        let detail = describe(tool: payload["tool_name"] as? String ?? "", input: payload["tool_input"] as? [String: Any] ?? [:], cwd: message.cwd)
+        message.canAsk = true
         guard let answer = requestDecision(&message, detail: detail, dataDir: dataDir) else { return 0 }
         var decision: [String: Any]
         switch answer.behavior {
@@ -84,11 +85,12 @@ enum HookMode {
         message.detail = detail
 
         writeState(message, dataDir: dataDir)
-        // Un datagramme UNIX est limité à ~2 Ko : on raccourcit le détail si besoin.
-        var data = (try? JSONEncoder().encode(message)) ?? Data()
-        while data.count > 1800, let detail = message.detail, detail.count > 40 {
-            message.detail = String(detail.prefix(detail.count / 2)) + "…"
-            data = (try? JSONEncoder().encode(message)) ?? Data()
+        // Un datagramme UNIX est limité à ~2 Ko. Une action qu'on ne peut pas montrer en entier ne s'approuve pas à l'aveugle :
+        // on ne dit rien, et l'agent applique sa propre règle (demande, ou refus en mode sans interface).
+        let data = (try? JSONEncoder().encode(message)) ?? Data()
+        guard data.count <= 1800 else {
+            dataDir.appendLog("approval: demande trop longue pour être affichée en entier (\(data.count) octets), laissée à l'agent")
+            return nil
         }
         guard PetSocket.send(data, to: dataDir.socket) else { return nil }   // app fermée : comportement normal
 
@@ -119,12 +121,13 @@ enum HookMode {
             dataDir.appendLog("gate[\(provider)]: \(call.name) (commande) laissé à Antigravity")
             return silent()
         }
-        let detail = describe(tool: call.name, input: call.input)
         var message = AgentMessage(
             provider: provider, event: "PermissionRequest", state: "attention",
             session: sanitize(firstString(payload, ["session_id", "conversation_id", "conversationId"]) ?? "default"),
             tool: sanitize(call.name))
         message.cwd = (payload["cwd"] as? String).map { String($0.prefix(300)) }
+        message.canAsk = false
+        let detail = describe(tool: call.name, input: call.input, cwd: message.cwd)
 
         var answer: (behavior: String, message: String?)?
         if let auto = ProcessInfo.processInfo.environment["TPREMAKE_GATE_AUTO"] {   // tests sans personnage
@@ -187,7 +190,19 @@ enum HookMode {
     private static let readOnlyCommands: Set<String> = [
         "ls", "pwd", "cat", "head", "tail", "wc", "echo", "which", "grep", "rg", "tree", "date", "whoami", "file", "stat", "du", "df", "uname", "basename", "dirname",
     ]
-    private static let readOnlyGit: Set<String> = ["status", "diff", "log", "show", "branch", "remote", "rev-parse", "ls-files", "blame"]
+    private static let readOnlyGit: Set<String> = ["status", "diff", "log", "show", "rev-parse", "ls-files", "blame"]
+    /// `git branch` et `git remote` ne sont inoffensifs que pour lister (jamais -D, add, remove…).
+    private static let listOnlyGit: [String: Set<String>] = [
+        "branch": ["-a", "-r", "-v", "-vv", "--list", "--show-current", "--all", "--remotes"],
+        "remote": ["-v", "show", "get-url"],
+    ]
+    /// Options qui écrivent un fichier ou lancent un programme, quel que soit l'outil.
+    private static let dangerousFlags = ["--output", "--ext-diff", "--textconv", "--pre", "--hostname-bin", "--exec", "-fprint", "-fls", "-fprintf"]
+    /// Fragments de chemins qui contiennent des secrets : leur lecture demande toujours l'accord.
+    private static let sensitiveFragments = [
+        ".ssh", ".aws", ".gnupg", ".netrc", ".npmrc", ".pypirc", ".kube", ".docker/config", ".config/gcloud", ".config/gh",
+        "id_rsa", "id_ed25519", "id_ecdsa", "credentials", "secret", "token", "passwd", "shadow", ".env", "keychain", ".pem", ".key",
+    ]
 
     /// Faux pour les lectures sans effet de bord ; vrai pour tout le reste (écriture, commande, réseau, outil inconnu).
     static func needsApproval(tool: String, input: [String: Any]) -> Bool {
@@ -205,23 +220,49 @@ enum HookMode {
         guard !text.isEmpty, text.rangeOfCharacter(from: CharacterSet(charactersIn: ";&|<>$`\\\n()")) == nil else { return false }
         let parts = text.split(separator: " ").map(String.init)
         guard let program = parts.first else { return false }
-        if program == "git" { return parts.count > 1 && readOnlyGit.contains(parts[1]) }
-        if program == "find" { return !parts.contains { ["-exec", "-delete", "-ok", "-execdir"].contains($0) } }
-        return readOnlyCommands.contains(program)
+        let args = Array(parts.dropFirst())
+        let lowered = text.lowercased()
+        if args.contains(where: { arg in dangerousFlags.contains { arg.hasPrefix($0) } }) { return false }
+        if args.contains(where: { $0.hasPrefix("~") }) || sensitiveFragments.contains(where: lowered.contains) { return false }
+        switch program {
+        case "git":
+            guard let sub = args.first else { return false }
+            if let allowed = listOnlyGit[sub] { return args.dropFirst().allSatisfy { allowed.contains($0) } }
+            return readOnlyGit.contains(sub)
+        case "find":
+            return !args.contains { ["-exec", "-delete", "-ok", "-execdir"].contains($0) }
+        case "tree":
+            return !args.contains("-o")
+        case "date":
+            return !args.contains { $0 == "-s" || $0.hasPrefix("--set") }
+        case "file":
+            return !args.contains { $0 == "-C" || $0 == "-m" || $0.hasPrefix("--compile") }
+        default:
+            return readOnlyCommands.contains(program)
+        }
     }
 
-    /// Résumé lisible de l'action demandée (commande, fichier, URL…).
-    static func describe(tool: String, input: [String: Any]) -> String {
+    /// Texte complet de l'action demandée : commande, fichier (avec le diff d'une édition), URL… et dossier de travail.
+    /// Jamais tronqué ici : `requestDecision` refuse d'afficher ce qu'il ne peut pas montrer en entier.
+    static func describe(tool: String, input: [String: Any], cwd: String? = nil) -> String {
         func str(_ key: String) -> String? { input[key] as? String }
-        let text: String
+        var text: String
         if let command = str("command") ?? str("CommandLine") { text = command }
-        else if let path = str("file_path") ?? str("notebook_path") ?? str("path") ?? str("Path") ?? str("TargetFile") ?? str("AbsolutePath") { text = path }
+        else if let path = str("file_path") ?? str("notebook_path") ?? str("path") ?? str("Path") ?? str("TargetFile") ?? str("AbsolutePath") {
+            text = path
+            if let old = str("old_string"), let new = str("new_string") {
+                text += "\n- " + old.replacingOccurrences(of: "\n", with: "\n- ") + "\n+ " + new.replacingOccurrences(of: "\n", with: "\n+ ")
+            } else if let content = str("content") ?? str("CodeContent") {
+                text += "\n" + content
+            }
+        }
         else if let url = str("url") ?? str("Url") { text = url }
         else if let pattern = str("pattern") { text = pattern }
         else if let data = try? JSONSerialization.data(withJSONObject: input, options: [.sortedKeys, .withoutEscapingSlashes]),
                 let json = String(data: data, encoding: .utf8) { text = json }
         else { text = "" }
-        return text.count > 500 ? String(text.prefix(500)) + "…" : text
+        if let cwd, !cwd.isEmpty { text += "\n\n📁 " + cwd }
+        return text
     }
 
     // MARK: - Utilitaires

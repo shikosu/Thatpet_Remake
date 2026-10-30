@@ -5,6 +5,8 @@ final class ApprovalController: NSObject {
     struct Request {
         let tool: String
         let detail: String
+        let provider: String
+        let canAsk: Bool
         let replyPath: String
         let expires: Date
     }
@@ -19,7 +21,10 @@ final class ApprovalController: NSObject {
 
     private let panel: NSPanel
     private let title = NSTextField(labelWithString: "")
-    private let detail = NSTextField(wrappingLabelWithString: "")
+    private let detail = NSTextView()
+    private let detailScroll = NSScrollView()
+    private var detailHeight: NSLayoutConstraint!
+    private let askButton: NSButton
     private let more = NSTextField(labelWithString: "")
     private var queue: [Request] = []
     private var expiry: Timer?
@@ -35,6 +40,7 @@ final class ApprovalController: NSObject {
         self.figure = figure
         self.dataDir = dataDir
         self.below = below
+        askButton = NSButton(title: "", target: nil, action: nil)
         panel = NSPanel(contentRect: NSRect(x: 0, y: 0, width: 340, height: 120),
                         styleMask: [.borderless, .nonactivatingPanel], backing: .buffered, defer: false)
         super.init()
@@ -54,10 +60,20 @@ final class ApprovalController: NSObject {
         title.font = .boldSystemFont(ofSize: 12)
         title.textColor = .secondaryLabelColor
         detail.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
-        detail.maximumNumberOfLines = 7
-        detail.lineBreakMode = .byTruncatingTail
-        detail.preferredMaxLayoutWidth = 312
+        detail.isEditable = false
         detail.isSelectable = true
+        detail.drawsBackground = false
+        detail.textContainerInset = .zero
+        detail.isVerticallyResizable = true
+        detail.textContainer?.widthTracksTextView = true
+        detailScroll.documentView = detail
+        detailScroll.drawsBackground = false
+        detailScroll.hasVerticalScroller = true
+        detailScroll.autohidesScrollers = true
+        detailScroll.translatesAutoresizingMaskIntoConstraints = false
+        detailHeight = detailScroll.heightAnchor.constraint(equalToConstant: 40)
+        detailHeight.isActive = true
+        detailScroll.widthAnchor.constraint(equalToConstant: 312).isActive = true
         more.font = .systemFont(ofSize: 11)
         more.textColor = .secondaryLabelColor
 
@@ -69,11 +85,13 @@ final class ApprovalController: NSObject {
         }
         let allow = button("Autoriser", #selector(allowTapped), primary: true)
         let deny = button("Refuser", #selector(denyTapped))
-        let ask = button("Voir dans Claude", #selector(askTapped))
-        let buttons = NSStackView(views: [allow, deny, ask])
+        askButton.target = self
+        askButton.action = #selector(askTapped)
+        askButton.bezelStyle = .rounded
+        let buttons = NSStackView(views: [allow, deny, askButton])
         buttons.spacing = 8
 
-        let stack = NSStackView(views: [title, detail, more, buttons])
+        let stack = NSStackView(views: [title, detailScroll, more, buttons])
         stack.orientation = .vertical
         stack.alignment = .leading
         stack.spacing = 8
@@ -108,8 +126,18 @@ final class ApprovalController: NSObject {
             expiry?.invalidate()
             return
         }
-        title.stringValue = "Claude demande la permission : \(request.tool)"
-        detail.stringValue = request.detail.isEmpty ? "(aucun détail)" : request.detail
+        let agent = Agent(rawValue: request.provider)?.speaker ?? "L'agent"
+        title.stringValue = "\(agent) demande la permission : \(request.tool)"
+        detail.string = request.detail.isEmpty ? "(aucun détail)" : request.detail
+        askButton.title = "Voir dans \(agent)"
+        askButton.isHidden = !request.canAsk
+        // Hauteur du texte, plafonnée : au-delà, on fait défiler plutôt que de couper.
+        if let layout = detail.layoutManager, let container = detail.textContainer {
+            container.containerSize = NSSize(width: 312, height: CGFloat.greatestFiniteMagnitude)
+            layout.ensureLayout(for: container)
+            detailHeight.constant = min(max(layout.usedRect(for: container).height + 2, 16), 180)
+        }
+        detail.scrollToBeginningOfDocument(nil)
         refreshCounter()
         relayout()
         panel.orderFrontRegardless()

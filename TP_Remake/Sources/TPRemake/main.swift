@@ -1,12 +1,21 @@
 import AppKit
 
-/// Cherche le dossier des packs : --packs <dir>, sinon ./Resources/packs, sinon le bundle de l'app.
+/// Cherche le dossier des packs : --packs <dir>, ./Resources/packs, le bundle de l'app,
+/// le dépôt autour du binaire (.build/…/TPRemake), puis la copie installée dans le dossier de données.
 func packsDirectory() -> URL {
     let args = CommandLine.arguments
     if let i = args.firstIndex(of: "--packs"), i + 1 < args.count { return URL(fileURLWithPath: args[i + 1]) }
-    let local = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("Resources/packs")
-    if FileManager.default.fileExists(atPath: local.path) { return local }
-    return Bundle.main.resourceURL?.appendingPathComponent("packs") ?? local
+    let manager = FileManager.default
+    let local = URL(fileURLWithPath: manager.currentDirectoryPath).appendingPathComponent("Resources/packs")
+    var candidates = [local]
+    if let bundled = Bundle.main.resourceURL?.appendingPathComponent("packs") { candidates.append(bundled) }
+    var folder = URL(fileURLWithPath: Bundle.main.executablePath ?? args[0]).resolvingSymlinksInPath().deletingLastPathComponent()
+    for _ in 0..<5 {
+        candidates.append(folder.appendingPathComponent("Resources/packs"))
+        folder.deleteLastPathComponent()
+    }
+    candidates.append(DataDir.resolve().root.appendingPathComponent("packs"))
+    return candidates.first { manager.fileExists(atPath: $0.path) } ?? local
 }
 
 // MARK: - Ligne de commande (hook, connect, disconnect, status)
@@ -34,7 +43,19 @@ func runCommandLine(_ args: [String]) -> Int32? {
         if let dir = option("--config-dir") { return URL(fileURLWithPath: dir) }
         return agent == .claude ? AgentConnector.defaultConfigDir : AgentConnector.defaultAntigravityDir
     }
-    let binary = Bundle.main.executablePath ?? URL(fileURLWithPath: args[0]).standardizedFileURL.path
+    let runningBinary = Bundle.main.executablePath ?? URL(fileURLWithPath: args[0]).standardizedFileURL.path
+    /// Les hooks pointent vers une copie stable du binaire, pas vers .build/ (que `swift package clean` efface).
+    func stableBinary() throws -> String {
+        if ProcessInfo.processInfo.environment["TPREMAKE_NO_INSTALL"] != nil { return runningBinary }
+        let installed = try dataDir.installBinary(from: runningBinary)
+        // Les packs inclus suivent le binaire : ainsi le personnage de secours existe quel que soit le dossier de lancement.
+        let packs = packsDirectory(), target = dataDir.root.appendingPathComponent("packs")
+        if packs.standardizedFileURL.path != target.standardizedFileURL.path, FileManager.default.fileExists(atPath: packs.path) {
+            try? FileManager.default.removeItem(at: target)
+            try? FileManager.default.copyItem(at: packs, to: target)
+        }
+        return installed
+    }
 
     switch args[1] {
     case "hook":
@@ -55,8 +76,8 @@ func runCommandLine(_ args: [String]) -> Int32? {
         do {
             let dir = configDir(for: agent)
             switch (args[1], agent) {
-            case ("connect", .claude): print(try AgentConnector.connect(configDir: dir, binary: binary))
-            case ("connect", .antigravity): print(try AgentConnector.connectAntigravity(configDir: dir, binary: binary))
+            case ("connect", .claude): print(try AgentConnector.connect(configDir: dir, binary: try stableBinary()))
+            case ("connect", .antigravity): print(try AgentConnector.connectAntigravity(configDir: dir, binary: try stableBinary()))
             case (_, .claude): print(try AgentConnector.disconnect(configDir: dir))
             case (_, .antigravity): print(try AgentConnector.disconnectAntigravity(configDir: dir))
             default: return 2
@@ -175,7 +196,10 @@ func runCommandLine(_ args: [String]) -> Int32? {
         """)
         return 0
     default:
-        return nil   // arguments du type --packs : on lance l'app
+        // Une option (--packs…) lance l'app ; un mot inconnu est une faute de frappe, pas une demande de lancement.
+        if args[1].hasPrefix("-") { return nil }
+        FileHandle.standardError.write(Data("Commande inconnue : \(args[1]). Voir « TPRemake help ».\n".utf8))
+        return 2
     }
 }
 
@@ -226,6 +250,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     private var now: Double { ProcessInfo.processInfo.systemUptime }
+
+    func applicationWillTerminate(_ notification: Notification) { CLIRunner.terminateAll() }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         guard PetLock.acquire(dataDir) else {
@@ -298,6 +324,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         chat.onReply = { [unowned self] text, isFinal, isError in
             bubble.showReply(text, isFinal: isFinal, isError: isError)
             if isFinal { apply(state: isError ? "error" : "celebrating") } else if lastState != "thinking" { apply(state: "thinking") }
+        }
+        chat.onStep = { [unowned self] step in
+            if lastState != "working" { apply(state: "working") }
+            activity.show(step)
         }
         // Le personnage reste en place tant que l'utilisateur discute ou doit répondre.
         brain.hold = { [unowned self] in bubble.isVisible || approvals.pendingCount > 0 || chat.isBusy || menuOpen }
@@ -621,7 +651,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         trackSession(message)
         if message.event == "PermissionRequest", let reply = message.reply, let expires = message.expires {
             approvals.enqueue(.init(tool: message.tool ?? "outil", detail: message.detail ?? "",
-                                    replyPath: reply, expires: Date(timeIntervalSince1970: expires)))
+                                    provider: message.provider, canAsk: message.canAsk ?? true, replyPath: reply, expires: Date(timeIntervalSince1970: expires)))
             approvals.autoAnswerIfRequested()
         }
     }

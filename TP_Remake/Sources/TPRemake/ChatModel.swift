@@ -48,6 +48,9 @@ final class ChatModel {
 
     /// Texte courant de la réponse (flux) et fin de réponse.
     var onReply: ((_ text: String, _ isFinal: Bool, _ isError: Bool) -> Void)?
+    /// Étape en cours d'un travail (« Bash : npm test »), nil quand l'agent écrit sa réponse ou a fini.
+    private(set) var currentStep: String?
+    var onStep: ((String) -> Void)?
 
     var attachmentsDirectory: URL { dataDir.root.appendingPathComponent("attachments") }
 
@@ -127,13 +130,15 @@ final class ChatModel {
     func send(_ text: String) {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty || !attachments.isEmpty, !isBusy else { return }
-        let files = attachments
+        let originals = attachments
         attachments = []
+        // L'agent ne reçoit que des copies dans un dossier privé : joindre ~/notes.txt n'ouvre pas tout ~.
+        let files = stageAttachments(originals)
         var prompt = trimmed.isEmpty ? "Regarde les fichiers joints." : trimmed
         var shown = trimmed
         if !files.isEmpty {
             prompt += "\n\nFichiers joints (lis-les avec tes outils) :\n" + files.map { "- " + $0.path }.joined(separator: "\n")
-            shown += (shown.isEmpty ? "" : "\n") + "📎 " + files.map(\.lastPathComponent).joined(separator: ", ")
+            shown += (shown.isEmpty ? "" : "\n") + "📎 " + originals.map(\.lastPathComponent).joined(separator: ", ")
         }
         let agent = self.agent
         update(agent) {
@@ -157,6 +162,32 @@ final class ChatModel {
             if let id = chat?.sessionID { resume = id }
         }
         active.send(prompt: prompt, sessionID: resume, workingDirectory: directory)
+    }
+
+    /// Copie chaque fichier joint dans un dossier à part (un par message) et renvoie les copies.
+    private func stageAttachments(_ originals: [URL]) -> [URL] {
+        guard !originals.isEmpty else { return [] }
+        let root = dataDir.root.appendingPathComponent("sent", isDirectory: true)
+        let folder = root.appendingPathComponent(UUID().uuidString, isDirectory: true)
+        let manager = FileManager.default
+        try? manager.createDirectory(at: folder, withIntermediateDirectories: true, attributes: [.posixPermissions: 0o700])
+        // Ménage : les dossiers de plus de 7 jours disparaissent.
+        let limit = Date().addingTimeInterval(-7 * 86_400)
+        for old in (try? manager.contentsOfDirectory(at: root, includingPropertiesForKeys: [.contentModificationDateKey])) ?? [] {
+            if let date = try? old.resourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate, date < limit {
+                try? manager.removeItem(at: old)
+            }
+        }
+        return originals.compactMap { source in
+            let target = folder.appendingPathComponent(source.lastPathComponent)
+            do {
+                try manager.copyItem(at: source.resolvingSymlinksInPath(), to: target)
+                return target
+            } catch {
+                dataDir.appendLog("attachments: copie impossible de \(source.lastPathComponent) : \(error.localizedDescription)")
+                return nil
+            }
+        }
     }
 
     func cancel() { runners.values.forEach { $0.cancel() } }
@@ -188,7 +219,12 @@ final class ChatModel {
         switch event {
         case .session(let id):
             update(agent) { $0.sessionID = id }
+        case .step(let text):
+            currentStep = text
+            changed()
+            if agent == self.agent { onStep?(text) }
         case .delta(let text):
+            currentStep = nil
             var current = ""
             update(agent) {
                 guard var last = $0.messages.last, last.role == .assistant else { return }
@@ -199,6 +235,7 @@ final class ChatModel {
             changed()
             if agent == self.agent { onReply?(current, false, false) }
         case .finished(let text, let isError):
+            currentStep = nil
             update(agent) {
                 guard var last = $0.messages.last, last.role == .assistant else { return }
                 last.text = text

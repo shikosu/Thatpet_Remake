@@ -90,14 +90,15 @@ final class ChatWindowController: NSObject, NSTextFieldDelegate {
         field.placeholderString = "Écrire à \(model.agent.speaker)… (Entrée pour envoyer)"
         let out = NSMutableAttributedString()
         let base = NSFont.systemFont(ofSize: 13)
-        for message in model.messages {
+        for (index, message) in model.messages.enumerated() {
             let isUser = message.role == .user
             out.append(NSAttributedString(string: (isUser ? "Vous" : model.agent.speaker) + "\n", attributes: [
                 .font: NSFont.boldSystemFont(ofSize: 11),
                 .foregroundColor: isUser ? NSColor.secondaryLabelColor : NSColor.controlAccentColor,
             ]))
             let color: NSColor = message.isError ? .systemRed : .labelColor
-            let body = message.text.isEmpty ? "…" : message.text
+            let working = index == model.messages.count - 1 ? model.currentStep.map { "⏳ " + $0 } : nil
+            let body = message.text.isEmpty ? (working ?? "…") : message.text
             // Les messages de l'utilisateur restent bruts ; ceux de l'agent sont mis en forme.
             out.append(isUser
                 ? NSAttributedString(string: body, attributes: [.font: base, .foregroundColor: color])
@@ -108,8 +109,12 @@ final class ChatWindowController: NSObject, NSTextFieldDelegate {
             out.append(NSAttributedString(string: "Aucun message pour l'instant.", attributes: [
                 .font: base, .foregroundColor: NSColor.secondaryLabelColor]))
         }
+        // On ne ramène en bas que si l'utilisateur y était déjà : il peut relire plus haut pendant que la réponse arrive.
+        let scroll = textView.enclosingScrollView
+        let visible = scroll?.contentView.bounds ?? .zero
+        let wasAtBottom = scroll == nil || visible.maxY >= textView.frame.height - 40 || textView.frame.height <= visible.height
         textView.textStorage?.setAttributedString(out)
-        textView.scrollToEndOfDocument(nil)
+        if wasAtBottom { textView.scrollToEndOfDocument(nil) } else { scroll?.contentView.scroll(to: visible.origin) }
         field.isEnabled = !model.isBusy
         stopButton.isHidden = !model.isBusy
     }
